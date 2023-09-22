@@ -66,6 +66,7 @@ def process_video():
     target_language = target_language_entry.get()
     output_merged_video_path = "output_merged_video.mp4"
 
+    
     extract_audio_from_video(input_video_path, audio_output_path)
 
     text = convert_speech_to_text(audio_output_path)
