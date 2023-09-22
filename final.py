@@ -43,10 +43,9 @@ def merge_audio_with_video(video_path, audio_path, output_video_path):
         video_clip = VideoFileClip(video_path)
         audio_clip = AudioFileClip(audio_path)
 
-        # Set the audio of the video to the translated audio
+        
         video_clip = video_clip.set_audio(audio_clip)
 
-        # Write the merged video to the output file
         video_clip.write_videofile(output_video_path, codec='libx264', audio_codec='aac')
 
         video_clip.close()
