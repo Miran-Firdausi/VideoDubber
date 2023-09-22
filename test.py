@@ -44,11 +44,7 @@ def merge_audio_with_video(video_path, audio_path, output_video_path):
     try:
         video_clip = VideoFileClip(video_path)
         audio_clip = AudioFileClip(audio_path)
-
-        # Set the audio of the video to the translated audio
         video_clip = video_clip.set_audio(audio_clip)
-
-        # Write the merged video to the output file
         video_clip.write_videofile(output_video_path, codec='libx264', audio_codec='aac')
 
         video_clip.close()
@@ -84,11 +80,11 @@ def process_video():
     merge_audio_with_video(input_video_path, output_audio_file, output_merged_video_path)
     result_label.config(text="Merged video saved as " + output_merged_video_path)
 
-# Create the main GUI window
+
 root = tk.Tk()
 root.title("Video Translation Tool")
 
-# Create and configure GUI widgets
+
 input_video_label = tk.Label(root, text="Input Video:")
 input_video_entry = tk.Entry(root, width=40)
 input_video_button = tk.Button(root, text="Browse", command=lambda: open_file_dialog(input_video_entry))
@@ -101,7 +97,7 @@ process_button = tk.Button(root, text="Process Video", command=process_video)
 output_text_entry = tk.Text(root, width=50, height=10)
 result_label = tk.Label(root, text="")
 
-# Arrange GUI widgets
+
 input_video_label.pack()
 input_video_entry.pack()
 input_video_button.pack()
@@ -111,5 +107,4 @@ process_button.pack()
 output_text_entry.pack()
 result_label.pack()
 
-# Start the GUI event loop
 root.mainloop()
