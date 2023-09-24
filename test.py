@@ -6,6 +6,7 @@ from moviepy.editor import VideoFileClip, AudioFileClip
 import tkinter as tk
 from tkinter import filedialog
 
+
 def extract_audio_from_video(video_path, audio_output_path):
     try:
         video_clip = VideoFileClip(video_path)
@@ -16,6 +17,7 @@ def extract_audio_from_video(video_path, audio_output_path):
         print(f"Audio extracted and saved to {audio_output_path}")
     except Exception as e:
         print(f"Error: {e}")
+
 
 def convert_speech_to_text(audio_file):
     recognizer = sr.Recognizer()
@@ -30,15 +32,18 @@ def convert_speech_to_text(audio_file):
     except sr.RequestError as e:
         return f"Error: {e}"
 
+
 def translate_text(text, target_language):
     translator = Translator()
     translated_text = translator.translate(text, dest=target_language)
     return translated_text.text
 
+
 def convert_text_to_audio(text, output_file, language='en'):
     tts = gTTS(text=text, lang=language)
     tts.save(output_file)
     os.system(f"mpg123 {output_file}")
+
 
 def merge_audio_with_video(video_path, audio_path, output_video_path):
     try:
@@ -53,10 +58,12 @@ def merge_audio_with_video(video_path, audio_path, output_video_path):
     except Exception as e:
         print(f"Error: {e}")
 
+
 def open_file_dialog(entry_widget):
     file_path = filedialog.askopenfilename(filetypes=[("Video Files", "*.mp4")])
     entry_widget.delete(0, tk.END)
     entry_widget.insert(0, file_path)
+
 
 def process_video():
     input_video_path = input_video_entry.get()
@@ -66,7 +73,6 @@ def process_video():
     target_language = target_language_entry.get()
     output_merged_video_path = "output_merged_video.mp4"
 
-    
     extract_audio_from_video(input_video_path, audio_output_path)
 
     text = convert_speech_to_text(audio_output_path)
