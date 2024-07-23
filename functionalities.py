@@ -7,7 +7,9 @@ from googletrans import Translator
 
 # Get video path
 def choose_video_file():
-    file_path = filedialog.askopenfilename(filetypes=[("Video Files", "*.mp4 *.avi *.mkv")])
+    file_path = filedialog.askopenfilename(
+        filetypes=[("Video Files", "*.mp4 *.avi *.mkv")]
+    )
     if file_path:
         return file_path
 
@@ -16,7 +18,7 @@ def choose_video_file():
 def extract_audio(video_path, audio_path="extracted_audio.wav"):
     video = VideoFileClip(video_path)
     audio = video.audio
-    audio.write_audiofile(audio_path, codec='pcm_s16le') # wav
+    audio.write_audiofile(audio_path, codec="pcm_s16le")  # wav
     # audio.write_audiofile(sys.argv[2], codec='mp3') # For mp3: compressed audio
     return audio_path
 
@@ -49,7 +51,7 @@ def translate_text(text, target_language="hi"):
 
 
 # Convert text to audio
-def text_to_audio(text, rate=150, volume=1.0, language='en'):
+def text_to_audio(text, rate=150, volume=1.0, language="en"):
     tts = gTTS(text=text, lang=language)
     converted_audio_path = "converted_audio.mp3"
     tts.save(converted_audio_path)
@@ -86,4 +88,3 @@ def resize_image(image):
 # print(translated)
 # text_to_audio(translated, language="mr")
 # combine_audio_to_video("video2.mp4", "converted_audio.mp3")
-
